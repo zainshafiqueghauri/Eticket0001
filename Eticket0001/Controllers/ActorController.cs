@@ -15,5 +15,10 @@ namespace Eticket0001.Controllers
             var data = _context.actors.ToList();
             return View(data);
         }
+        public IActionResult Ghauri()
+        {
+            var data = _context.actors.ToList();
+            return View(data);
+        }
     }
 }
