@@ -14,7 +14,7 @@ namespace Eticket0001.Controllers
         public async Task <IActionResult> Index()
         {
             var allmovie = await _Context.movie.ToListAsync();
-            return View();
+            return View(allmovie);
         }
     }
 }
