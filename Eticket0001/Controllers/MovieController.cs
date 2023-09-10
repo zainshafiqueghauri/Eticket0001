@@ -8,12 +8,12 @@ namespace Eticket0001.Controllers
     {
         private readonly AddDbContextcs _Context;
         public MovieController(AddDbContextcs contextcs)
-        {
+        { 
             _Context = contextcs;
         }
         public async Task <IActionResult> Index()
         {
-            var allmovie = await _Context.movie.Include(n => n.cinema).ToListAsync();
+            var allmovie = await _Context.movie.Include(n => n.cinema).OrderBy(n => n.Name).ToListAsync();
             return View(allmovie);
         }
     }

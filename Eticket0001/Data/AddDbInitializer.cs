@@ -150,7 +150,7 @@ namespace Eticket0001.Data
                         },
                         new Movie()
                         {
-                            Name = "",
+                            Name = "No Country For Old Man",
                             Description = "No Country for Old Man",
                             Price = 39.50,
                             ImageURL = "https://dotnethow.net/images/movies/movie-2.jpeg",
@@ -246,6 +246,11 @@ namespace Eticket0001.Data
                             ActorId = 2,
                             MovieId = 2
                         },
+                        new Actor_Movie()
+                        {
+                            ActorId = 3,
+                            MovieId = 3
+                        }
                     });
                     context.SaveChanges();
 

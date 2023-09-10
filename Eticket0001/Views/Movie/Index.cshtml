@@ -10,7 +10,7 @@
 <body>
 
 
-<div class="Row">
+<div class="row">
     @foreach (var item in Model)
     {
         <div class="col-md-4 col-xs-6 border-primary mb-3">
@@ -34,13 +34,17 @@
                             <p class="card-text">@item.Description</p>
                             <p class="Card-text"><b>Cinema:</b>@item.cinema.Name</p>
                             <p class="Card-text"><b>Category:</b>@item.MovieCategory</p>
-                            <p class="Card-text"><b>Start Date:</b>@item.StartDate</p>
-                            <p class="Card-text"><b>End Date:</b>@item.EndDate</p>
+                            <p class="Card-text"><b>Start Date:</b>@item.StartDate.ToString("dd MMM yy")</p>
+                            <p class="Card-text"><b>End Date:</b>@item.EndDate.ToString("dd MMM yy")</p>
                             <p class="card-text">
                                 <b>Status:</b>
                                     @if(DateTime.Now >=  item.StartDate && DateTime.Now <= item.EndDate)
                                     {
-                                        <span class="badge bg-success">Available</span>
+                                        <span class="badge bg-success">AVAILABLE</span>
+                                    }else if(DateTime.Now > item.EndDate)
+                                    {
+                                        <span class="badge bg-danger">Expired</span>
+
                                     }else
                                     {
                                         <span class="badge bg-primary text-white">Upcomming</span>
@@ -52,7 +56,7 @@
                         <div class="card-footer">
                             <p class="card-text">
                                 <a class="btn btn-outline-primary float-right"><i class="bi bi-eye-fill"></i> Show Detail</a>
-                                <a class="btn btn-outline-primary"><i class="bi bi-cart-plus"></i> Add To Cart</a>
+                                <a class="btn btn-outline-primary"><i class="bi bi-cart-plus"></i> Add To Cart (Price @item.Price.ToString("c"))</a>
                             </p>
                         </div>
                     </div>
