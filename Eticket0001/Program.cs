@@ -1,5 +1,6 @@
 using eticket.Data;
 using Eticket0001.Data;
+using Eticket0001.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Eticket0001
@@ -13,9 +14,11 @@ namespace Eticket0001
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            
+            //dbContext configuration
             builder.Services.AddDbContext<AddDbContextcs>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectionString")));
 
+            //service configuration
+            builder.Services.AddScoped<IActorServices, ActorService>();
            
             var app = builder.Build();
 
