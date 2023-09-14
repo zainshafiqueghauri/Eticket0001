@@ -1,4 +1,5 @@
 ﻿using eticket.Data;
+using eticket.Models;
 using Eticket0001.Data.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,7 +14,7 @@ namespace Eticket0001.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var data = await _service.GetAll();
+            var data = await _service.GetAllAsync();
             return View(data);
         }
 
@@ -22,5 +23,48 @@ namespace Eticket0001.Controllers
         {
             return View();
         }
+        
+        [HttpPost]
+        public async Task<IActionResult> Create([Bind("FullName, ProfilePictureURL,Bio")] Actor actor)
+        {
+            if(!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.AddAsync(actor);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: ACTOR/DETAIL/1
+        public async Task<IActionResult> details(int id)
+        {
+            var actorDetail =await _service.GetbyIdAsync(id);
+
+            if (actorDetail == null) return View("NOT FOUND");
+            return View(actorDetail);   
+        }
+        
+        
+        //get actor/create
+        public async Task<IActionResult> Edit(int id)
+        {
+            var actorDetail = await _service.GetbyIdAsync(id);
+            if (actorDetail == null) return View("NOT FOUND");
+            return View(actorDetail);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, 
+            [Bind("Id, FullName, ProfilePictureURL,Bio")] Actor actor)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.UpdateAsync(id,actor);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }
