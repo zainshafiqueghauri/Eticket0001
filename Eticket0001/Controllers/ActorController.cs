@@ -66,5 +66,24 @@ namespace Eticket0001.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+
+        //get actor/create
+        public async Task<IActionResult> Delete(int id)
+        {
+            var actorDetail = await _service.GetbyIdAsync(id);
+            if (actorDetail == null) return View("NOT FOUND");
+            return View(actorDetail);
+        }
+
+        [HttpPost,ActionName("Delete")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var actorDetail = await _service.GetbyIdAsync(id);
+            if (actorDetail == null) return View("NOT FOUND");
+
+            _service.DeleteAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

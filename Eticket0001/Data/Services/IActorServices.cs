@@ -1,16 +1,10 @@
 ﻿using eticket.Models;
+using Eticket0001.Data.Base;
 
 namespace Eticket0001.Data.Services
 {
-    public interface IActorServices
+    public interface IActorServices: iEntityBaseRepository<Actor>
     {
-        Task<IEnumerable<Actor>> GetAllAsync();
-        Task<Actor> GetbyIdAsync(int id);
-        Task AddAsync(Actor actor);
-        Task<Actor> UpdateAsync(int id, Actor newActor);
-
-        void Delete(int id);
-
 
     }
 }

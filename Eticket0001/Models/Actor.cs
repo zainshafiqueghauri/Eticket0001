@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Eticket0001.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace eticket.Models
 {
-    public class Actor
+    public class Actor:iEntityBase
     {
+
         [Key]
         public int Id { get; set; }
         [Display(Name = "Profile Picture")]
